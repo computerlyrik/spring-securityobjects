@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd        
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd         
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd         
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd         
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <context:spring-configured/>
+
+    <context:property-placeholder location="classpath*:META-INF/*.properties"/>
+
+    <context:component-scan base-package="de.computerlyrik.wdcmapp">
+        <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+    </bean>
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+	<bean id="userDetailsService" class="de.computerlyrik.spring.securityobjects.service.UserDetailsServiceImpl">
+	</bean>
+	
+	<bean id="passwordEncoder" class="de.computerlyrik.spring.securityobjects.service.PasswordEncoderImpl">
+	</bean>	
+	
+	<bean id="hashingPasswordEncoder" class="de.computerlyrik.spring.securityobjects.service.PasswordEncoderImpl">
+		<property name="hash" value="${scs.hash}" />
+	</bean>	
+	<bean id="saltedPasswordEncoder" class="de.computerlyrik.spring.securityobjects.service.PasswordEncoderImpl">
+		<property name="hash" value="${scs.hash}" />
+		<property name="salt" value="${scs.salt}" />
+	</bean>
+
+	<!-- Configure Authentication mechanism -->
+    <security:authentication-manager alias="authenticationManager">
+    	<!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
+    	<security:authentication-provider user-service-ref="userDetailsService">
+			<security:password-encoder ref="passwordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>
