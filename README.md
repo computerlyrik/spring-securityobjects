@@ -1,10 +1,9 @@
-Use JPA Objects as security prinicpals for string. Easily stored in own Table.
+tags: jsf java springframework spring security jpa passwordsalt primefaces
 
-
--------------TODO - clean up documentation and write example project
 
 # Step 0 - Description
 This library is made to set up Multi-User-Webapps fast and straightforward.
+Use JPA Objects as security prinicpals for string. Easily stored in JPA Datastore.
 
 Uses POJOs as user classes (e.g. Admin.java). Each instance of this class is called a user with the role 'ROLE_ADMIN'.
 
