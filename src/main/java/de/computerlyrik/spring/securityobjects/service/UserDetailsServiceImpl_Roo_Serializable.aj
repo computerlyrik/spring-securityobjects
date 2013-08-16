@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects.service;
 
 import de.computerlyrik.spring.securityobjects.service.UserDetailsServiceImpl;
-
 import java.io.Serializable;
 
 privileged aspect UserDetailsServiceImpl_Roo_Serializable {

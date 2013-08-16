@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

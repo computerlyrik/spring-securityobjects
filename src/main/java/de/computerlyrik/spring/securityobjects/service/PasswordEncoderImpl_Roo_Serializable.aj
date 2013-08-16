@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects.service;
 
 import de.computerlyrik.spring.securityobjects.service.PasswordEncoderImpl;
-
 import java.io.Serializable;
 
 privileged aspect PasswordEncoderImpl_Roo_Serializable {

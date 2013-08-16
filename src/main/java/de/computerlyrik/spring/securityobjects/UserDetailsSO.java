@@ -25,7 +25,7 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findUserDetailsSCSsByUsernameEquals" })
+@RooJpaActiveRecord(finders = { "findUserDetailsSOByUsernameEquals" })
 public class UserDetailsSO implements UserDetails {
 
     private static final long serialVersionUID = 1L;

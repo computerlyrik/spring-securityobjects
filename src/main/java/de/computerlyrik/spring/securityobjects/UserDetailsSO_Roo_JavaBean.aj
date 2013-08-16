@@ -5,7 +5,6 @@ package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
 import de.computerlyrik.spring.securityobjects.service.UserDetailsServiceImpl;
-
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 privileged aspect UserDetailsSO_Roo_JavaBean {

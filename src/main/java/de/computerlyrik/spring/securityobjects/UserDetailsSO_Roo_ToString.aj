@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

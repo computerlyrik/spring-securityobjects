@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	{
 		UserDetailsSO user;
 		try {
-			TypedQuery<UserDetailsSO> q = UserDetailsSO.findUserDetailsSOsByUsernameEquals(username);
+			TypedQuery<UserDetailsSO> q = UserDetailsSO.findUserDetailsSOByUsernameEquals(username);
 			if (q.getMaxResults() == 0) {
 				throw new UsernameNotFoundException("Username "+ username + "not found");
 			}

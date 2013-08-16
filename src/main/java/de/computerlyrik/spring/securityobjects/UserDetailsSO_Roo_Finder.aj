@@ -4,13 +4,12 @@
 package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect UserDetailsSO_Roo_Finder {
     
-    public static TypedQuery<UserDetailsSO> UserDetailsSO.findUserDetailsSOsByUsernameEquals(String username) {
+    public static TypedQuery<UserDetailsSO> UserDetailsSO.findUserDetailsSOByUsernameEquals(String username) {
         if (username == null || username.length() == 0) throw new IllegalArgumentException("The username argument is required");
         EntityManager em = UserDetailsSO.entityManager();
         TypedQuery<UserDetailsSO> q = em.createQuery("SELECT o FROM UserDetailsSO AS o WHERE o.username = :username", UserDetailsSO.class);

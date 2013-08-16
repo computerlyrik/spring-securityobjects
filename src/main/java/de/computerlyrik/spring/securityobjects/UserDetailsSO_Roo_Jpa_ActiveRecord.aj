@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
-
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,15 +20,15 @@ privileged aspect UserDetailsSO_Roo_Jpa_ActiveRecord {
         return em;
     }
     
-    public static long UserDetailsSO.countUserDetailsSOs() {
+    public static long UserDetailsSO.countUserDetailsSO() {
         return entityManager().createQuery("SELECT COUNT(o) FROM UserDetailsSO o", Long.class).getSingleResult();
     }
     
-    public static List<UserDetailsSO> UserDetailsSO.findAllUserDetailsSOs() {
+    public static List<UserDetailsSO> UserDetailsSO.findAllUserDetailsSO() {
         return entityManager().createQuery("SELECT o FROM UserDetailsSO o", UserDetailsSO.class).getResultList();
     }
     
-    public static UserDetailsSO UserDetailsSO.findUserDetailsSCS(Long id) {
+    public static UserDetailsSO UserDetailsSO.findUserDetailsSO(Long id) {
         if (id == null) return null;
         return entityManager().find(UserDetailsSO.class, id);
     }
@@ -50,7 +49,7 @@ privileged aspect UserDetailsSO_Roo_Jpa_ActiveRecord {
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            UserDetailsSO attached = UserDetailsSO.findUserDetailsSCS(this.id);
+            UserDetailsSO attached = UserDetailsSO.findUserDetailsSO(this.id);
             this.entityManager.remove(attached);
         }
     }

@@ -4,7 +4,6 @@
 package de.computerlyrik.spring.securityobjects;
 
 import de.computerlyrik.spring.securityobjects.UserDetailsSO;
-
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect UserDetailsSO_Roo_Configurable {
