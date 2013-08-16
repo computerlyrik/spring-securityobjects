@@ -41,7 +41,7 @@ public class UserDetailsSOTest {
 	 * Try out some preconfigured password/hash combinations
 	 */
 	@Test
-	public void userDetailsSCSDefaultTest() {
+	public void userDetailsSODefaultTest() {
 		Map<String,String> passwordhashes = new HashMap<String,String>();
 		passwordhashes.put("admin", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");		
 		UserDetailsSO u = new UserDetailsSO();
